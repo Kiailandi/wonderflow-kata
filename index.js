@@ -1,13 +1,13 @@
 const chatParser = (inputString) => {
     /**
      * ^((?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)) - date in formato HH:MM:SS 24h ad inizio stringa
-     * (Customer) - type, customer (solo customer essendo mono riga al momento)
-     * ^(((?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)) (Customer) : ) - mention
+     * ([Cc]ustomer) - type, customer (solo customer essendo mono riga al momento)
+     * ^(((?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)) ([Cc]ustomer) : ) - mention
      * .* - sentence, resto del messaggio fino alla fine
      * 
      * i capturing groups sono data, mention, sentence e type
      */
-    const regexpTokens = /^(((?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)) (Customer) : )(.*)$/;
+    const regexpTokens = /^(((?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)) ([Cc]ustomer) : )(.*)$/;
     const match = inputString.match(regexpTokens);
     const resultArray = [{
         date: match[2],
