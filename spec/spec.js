@@ -22,4 +22,15 @@ describe("ChatParser", function() {
         }];
         expect(chatParser(inputString)).toEqual(expectedOutput);
     });
+
+    it('should parse a one line string with no spaces in the mention', function () {
+        const inputString = `14:24:32Customer:Lorem ipsum dolor sit amet, consectetur adipiscing elit.`;
+        const expectedOutput = [{
+            date: '14:24:32',
+            mention: '14:24:32Customer:',
+            sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            type: 'customer'
+        }];
+        expect(chatParser(inputString)).toEqual(expectedOutput);
+    });
 });
