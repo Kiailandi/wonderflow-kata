@@ -1,0 +1,22 @@
+{
+  "name": "wonderflow-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiailandi/wonderflow-kata.git"
+  },
+  "author": "Tommaso Montefusco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kiailandi/wonderflow-kata/issues"
+  },
+  "homepage": "https://github.com/Kiailandi/wonderflow-kata#readme",
+  "devDependencies": {
+    "jasmine": "^3.7.0"
+  }
+}
