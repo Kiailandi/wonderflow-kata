@@ -179,4 +179,38 @@ describe("ChatParser", function() {
         const output = chatParser(inputString);
         expect(output).toEqual(expectedOutput);
     });
+
+    it('should parse a n messages string with a customer and a fullname agent', function () {
+        const inputString = `14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.14:26:15 Emanuele Querzola : I received the package, ut blandit lectus.`;
+        const expectedOutput = [{
+            date: '14:24:32',
+            mention: '14:24:32 Customer : ',
+            sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            type: 'customer'
+          }, {
+            date: '14:26:15',
+            mention: '14:26:15 Emanuele Querzola : ',
+            sentence: 'I received the package, ut blandit lectus.',
+            type: 'agent'
+        }];
+        const output = chatParser(inputString);
+        expect(output).toEqual(expectedOutput);
+    });
+
+    it('should parse a n messages string with an agent and a fullname customer', function () {
+        const inputString = `14:24:32 Luca Galasso : Lorem ipsum dolor sit amet, consectetur adipiscing elit.14:26:15 Agent : I received the package, ut blandit lectus.`;
+        const expectedOutput = [{
+            date: '14:24:32',
+            mention: '14:24:32 Luca Galasso : ',
+            sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            type: 'customer'
+          }, {
+            date: '14:26:15',
+            mention: '14:26:15 Agent : ',
+            sentence: 'I received the package, ut blandit lectus.',
+            type: 'agent'
+        }];
+        const output = chatParser(inputString);
+        expect(output).toEqual(expectedOutput);
+    });
 });
