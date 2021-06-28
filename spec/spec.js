@@ -34,7 +34,7 @@ describe("ChatParser", function() {
         expect(chatParser(inputString)).toEqual(expectedOutput);
     });
 
-    it('should parse a two lines string with /\n as newline', function () {
+    it('should parse a two lines string with \\n as newline', function () {
         const inputString = `14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n14:26:15 Agent : Aliquam non cursus erat, ut blandit lectus.`;
         const expectedOutput = [{
             date: '14:24:32',
@@ -47,8 +47,41 @@ describe("ChatParser", function() {
             sentence: 'Aliquam non cursus erat, ut blandit lectus.',
             type: 'agent'
           }];
-        const result = chatParser(inputString);
-        console.log(result);
-        expect(result).toEqual(expectedOutput);
+        const output = chatParser(inputString);
+        expect(output).toEqual(expectedOutput);
+    });
+
+    it('should parse a two lines string with \\r as newline', function () {
+        const inputString = `14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r14:26:15 Agent : Aliquam non cursus erat, ut blandit lectus.`;
+        const expectedOutput = [{
+            date: '14:24:32',
+            mention: '14:24:32 Customer : ',
+            sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r',
+            type: 'customer'
+          }, {
+            date: '14:26:15',
+            mention: '14:26:15 Agent : ',
+            sentence: 'Aliquam non cursus erat, ut blandit lectus.',
+            type: 'agent'
+          }];
+        const output = chatParser(inputString);
+        expect(output).toEqual(expectedOutput);
+    });
+
+    it('should parse a two lines string with \\r\\n as newline', function () {
+        const inputString = `14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n14:26:15 Agent : Aliquam non cursus erat, ut blandit lectus.`;
+        const expectedOutput = [{
+            date: '14:24:32',
+            mention: '14:24:32 Customer : ',
+            sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n',
+            type: 'customer'
+          }, {
+            date: '14:26:15',
+            mention: '14:26:15 Agent : ',
+            sentence: 'Aliquam non cursus erat, ut blandit lectus.',
+            type: 'agent'
+          }];
+        const output = chatParser(inputString);
+        expect(output).toEqual(expectedOutput);
     });
 });
