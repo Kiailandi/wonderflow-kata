@@ -1,5 +1,5 @@
 describe("ChatParser", function() {
-    const chatParser = require('../index.js');
+    const chatParser = require('../chatParser.js');
     
     it('should parse a general one line string', function () {
         const inputString = `14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.`;
