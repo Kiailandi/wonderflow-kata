@@ -145,4 +145,21 @@ describe("ChatParser", function() {
         const output = chatParser(inputString);
         expect(output).toEqual(expectedOutput);
     });
+
+    it('should parse a n messages string with newline as separator and ignore extra dates', function () {
+        const inputString = `14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n14:26:15 Agent : I received it at 12:24:48, ut blandit lectus.`;
+        const expectedOutput = [{
+            date: '14:24:32',
+            mention: '14:24:32 Customer : ',
+            sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n',
+            type: 'customer'
+          }, {
+            date: '14:26:15',
+            mention: '14:26:15 Agent : ',
+            sentence: 'I received it at 12:24:48, ut blandit lectus.',
+            type: 'agent'
+        }];
+        const output = chatParser(inputString);
+        expect(output).toEqual(expectedOutput);
+    });
 });
